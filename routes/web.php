@@ -10,6 +10,7 @@ use App\Http\Controllers\PdfController;
 
 
 
+
 Route::get('/', function () {
     return redirect('/login');
 });
@@ -39,21 +40,17 @@ Route::get('/auth/google/callback', function () {
 
     $googleUser = Socialite::driver('google')->user();
 
-    // 1️⃣ Cek berdasarkan id_google
     $user = User::where('id_google', $googleUser->getId())->first();
 
     if (!$user) {
 
-        // 2️⃣ Kalau belum ada, cek berdasarkan email
         $user = User::where('email', $googleUser->getEmail())->first();
 
         if ($user) {
-            // update id_google jika email sudah ada
             $user->update([
                 'id_google' => $googleUser->getId(),
             ]);
         } else {
-            // buat user baru
             $user = User::create([
                 'name' => $googleUser->getName(),
                 'email' => $googleUser->getEmail(),
@@ -69,16 +66,13 @@ Route::get('/auth/google/callback', function () {
         'otp' => $otp
     ]);
 
-    // 4️⃣ SIMPAN USER ID KE SESSION (BELUM LOGIN)
     session(['otp_user_id' => $user->id]);
 
-    // 5️⃣ KIRIM EMAIL OTP
     Mail::raw("Kode OTP login anda adalah: $otp", function ($message) use ($user) {
         $message->to($user->email)
                 ->subject('Kode OTP Login');
     });
 
-    // 6️⃣ REDIRECT KE HALAMAN OTP
     return redirect()->route('otp.form');
 });
 

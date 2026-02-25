@@ -21,6 +21,5 @@
                 <i class="mdi mdi-book menu-icon"></i>
             </a>
         </li>
-
     </ul>
 </nav>
