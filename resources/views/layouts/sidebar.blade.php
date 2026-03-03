@@ -21,5 +21,13 @@
                 <i class="mdi mdi-book menu-icon"></i>
             </a>
         </li>
+
+        <li class="nav-item {{ request()->is('barangs*') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('barangs.index') }}">
+                <span class="menu-title">Barang</span>
+                <i class="mdi mdi-tag menu-icon"></i>
+            </a>
+        </li>
+
     </ul>
 </nav>

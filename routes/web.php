@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Http\Controllers\OtpController;
 use App\Http\Controllers\PdfController;
+use App\Http\Controllers\BarangController;
 
 
 
@@ -82,3 +83,6 @@ Route::get('/otp', [OtpController::class, 'showForm'])->name('otp.form');
 Route::post('/otp', [OtpController::class, 'verify'])->name('otp.verify');
 Route::get('/pdf/sertifikat', [PdfController::class, 'sertifikat']);
 Route::get('/pdf/undangan', [PdfController::class, 'undangan']);
+Route::resource('barangs', BarangController::class);
+Route::post('/barangs/cetak', [BarangController::class, 'cetak'])
+    ->name('barangs.cetak');

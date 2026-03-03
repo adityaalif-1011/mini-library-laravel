@@ -18,7 +18,7 @@
 </head>
 <body>
     <div class="container">
-        <h1>SERTIFIKAT</h1>
+        <h1>SERTIFIKAT 2</h1>
         <p>Diberikan kepada</p>
         <h2>Aditya Alif Santoso</h2>
         <p>Atas partisipasinya dalam Mini Library Laravel Project</p>
