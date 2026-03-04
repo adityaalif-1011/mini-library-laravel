@@ -1,13 +1,37 @@
-<h2>Tambah Barang</h2>
+@extends('layouts.app')
 
-<form action="{{ route('barangs.store') }}" method="POST">
-@csrf
+@section('content')
 
-Nama Barang:
-<input type="text" name="nama_barang"><br>
+<div class="page-header">
+    <h3 class="page-title">Tambah Barang</h3>
+</div>
 
-Harga:
-<input type="number" name="harga"><br>
+<div class="card">
+    <div class="card-body">
 
-<button type="submit">Simpan</button>
-</form>
+        <form action="{{ route('barangs.store') }}" method="POST">
+            @csrf
+
+            <div class="form-group">
+                <label>Nama Barang</label>
+                <input type="text" name="nama_barang" class="form-control" required>
+            </div>
+
+            <div class="form-group mt-3">
+                <label>Harga</label>
+                <input type="number" name="harga" class="form-control" required>
+            </div>
+
+            <button type="submit" class="btn btn-success mt-3">
+                Simpan
+            </button>
+
+            <a href="{{ route('barangs.index') }}" class="btn btn-secondary mt-3">
+                Kembali
+            </a>
+        </form>
+
+    </div>
+</div>
+
+@endsection

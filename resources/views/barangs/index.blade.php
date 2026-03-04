@@ -20,13 +20,13 @@
 
         <div class="row mb-3">
             <div class="col-md-3">
-                <label>Posisi X (1-5)</label>
+                <label>Posisi Baris (1-5)</label>
                 <input type="number" name="x" min="1" max="5" 
                        class="form-control" required>
             </div>
 
             <div class="col-md-3">
-                <label>Posisi Y (1-8)</label>
+                <label>Posisi Kolom (1-8)</label>
                 <input type="number" name="y" min="1" max="8" 
                        class="form-control" required>
             </div>
