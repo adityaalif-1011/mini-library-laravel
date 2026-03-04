@@ -1,74 +1,58 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta charset="utf-8">
 <style>
+
 @page {
-    margin: 0;
+    margin: 15mm 10mm;
 }
 
 body {
     margin: 0;
     padding: 0;
-}
-
-.page {
-    width: 210mm;
-    height: 296mm;
     position: relative;
 }
 
 .label {
+    position: absolute;
     width: 38mm;
     height: 25mm;
-    position: absolute;
-    border: 1px solid black;
+    box-sizing: border-box;
+    text-align: center;
+    padding-top: 6mm;
+    font-size: 11px;
 }
 
-.label-content {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 100%;
-    text-align: center;
-    font-size: 10px;
-}
 </style>
 </head>
 <body>
 
-<div class="page">
-
 @php
-$columns = 5;
-$labelWidth = 38;
-$labelHeight = 25;
+    $totalSlots = 40;
 @endphp
 
-@foreach($labels as $index => $barang)
+@for($i = 0; $i < $totalSlots; $i++)
 
-@php
-$position = $startIndex + $index;
-$row = floor($position / $columns);
-$col = $position % $columns;
+    @php
+        $col = $i % 5;
+        $row = floor($i / 5);
 
-$top = $row * $labelHeight;
-$left = $col * $labelWidth;
-@endphp
+        $left = $col * 38;
+        $top = $row * 25;
+    @endphp
 
-<div class="label"
-     style="top: {{ $top }}mm; left: {{ $left }}mm;">
+    @if(isset($labels[$i - $startIndex]) && $i >= $startIndex)
+        <div class="label"
+             style="left: {{ $left }}mm; top: {{ $top }}mm;">
 
-    <div class="label-content">
-        <strong>{{ $barang->nama_barang }}</strong><br>
-        Rp {{ number_format($barang->harga,0,',','.') }}
-    </div>
+            <strong>{{ $labels[$i - $startIndex]->nama_barang }}</strong><br>
+            Rp {{ number_format($labels[$i - $startIndex]->harga,0,',','.') }}
 
-</div>
+        </div>
+    @endif
 
-@endforeach
-
-</div>
+@endfor
 
 </body>
 </html>
