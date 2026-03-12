@@ -86,3 +86,5 @@ Route::get('/pdf/undangan', [PdfController::class, 'undangan']);
 Route::resource('barangs', BarangController::class);
 Route::post('/barangs/cetak', [BarangController::class, 'cetak'])
     ->name('barangs.cetak');
+
+Route::view('/modul4', 'modul4.index');

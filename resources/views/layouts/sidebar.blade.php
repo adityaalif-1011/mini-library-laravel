@@ -29,5 +29,12 @@
             </a>
         </li>
 
+        <li class="nav-item {{ request()->is('modul4') ? 'active' : '' }}">
+    <a class="nav-link" href="{{ url('/modul4') }}">
+        <span class="menu-title">Modul 4</span>
+        <i class="mdi mdi-code-tags menu-icon"></i>
+    </a>
+</li>
+
     </ul>
 </nav>
